@@ -10,6 +10,7 @@ import {
 import {
   AccountCircleOutlined,
   ChatBubbleOutline,
+  Dashboard,
   PeopleAltOutlined,
   StarOutlineRounded,
   VillaOutlined,
@@ -122,28 +123,40 @@ function App() {
           catchAll={<ErrorComponent />}
           resources={[
             {
-              name: 'property',
-              list: MuiInferencer,
+              name: 'dashboard',
+              list: Home,
+              icon: <Dashboard />,
+              options: {
+                label: 'Dashboard',
+              },
+            },
+            {
+              name: 'properties',
+              list: AllProperties,
+              show: PropertyDetails,
+              create: CreateProperty,
+              edit: EditProperty,
               icon: <VillaOutlined />,
             },
             {
               name: 'agent',
-              list: MuiInferencer,
+              list: Agents,
+              show: AgentProfile,
               icon: <PeopleAltOutlined />,
             },
             {
               name: 'review',
-              list: MuiInferencer,
+              list: Home,
               icon: <StarOutlineRounded />,
             },
             {
               name: 'message',
-              list: MuiInferencer,
+              list: Home,
               icon: <ChatBubbleOutline />,
             },
             {
               name: 'my-profile',
-              list: MuiInferencer,
+              list: MyProfile,
               icon: <AccountCircleOutlined />,
               options: {
                 label: 'My profile',
@@ -158,7 +171,7 @@ function App() {
           authProvider={authProvider}
           LoginPage={Login}
           i18nProvider={i18nProvider}
-          DashboardPage={Home}
+          // DashboardPage={Home}
         />
       </RefineSnackbarProvider>
     </ColorModeContextProvider>

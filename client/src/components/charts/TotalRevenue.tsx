@@ -5,6 +5,8 @@ import ReactApexChart from 'react-apexcharts';
 import { TotalRevenueOptions, TotalRevenueSeries } from './chat.config';
 
 export const TotalRevenue = () => {
+  console.log('TotalRevenue');
+  
   return (
     <Box
       id="chart"
@@ -41,6 +43,7 @@ export const TotalRevenue = () => {
         type="bar"
         height={310}
         options={TotalRevenueOptions}
+        
       />
     </Box>
   );

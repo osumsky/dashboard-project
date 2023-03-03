@@ -17,6 +17,11 @@ export const TotalRevenueOptions: ApexOptions = {
     toolbar: {
       show: false,
     },
+    events: {
+      updated: (chart) => {
+        chart.windowResizeHandler();
+      },
+    },
   },
   colors: ['#475BE8', '#CFC8FF'],
   plotOptions: {
