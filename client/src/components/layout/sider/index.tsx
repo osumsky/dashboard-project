@@ -246,7 +246,9 @@ export const Sider: typeof DefaultSider = ({ render }) => {
             sx={{
               justifyContent: 'center',
               minWidth: 36,
-              color: 'primary.contrastText',
+              color: '#808191', //color: 'primary.contrastText',
+              marginLeft: '8px',
+              marginRight: '14px'
             }}
           >
             <Dashboard />
@@ -435,7 +437,7 @@ export const Sider: typeof DefaultSider = ({ render }) => {
             top: '64px',
             left: '0px',
             borderRadius: '0 6px 6px 0',
-            bgcolor: '#475be8',//bgcolor: 'secondary.main',
+            bgcolor: '#475be8', //bgcolor: 'secondary.main',
             zIndex: 1199,
             width: '36px',
           }}
