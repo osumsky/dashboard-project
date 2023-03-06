@@ -1,17 +1,17 @@
+import { ConfigModule } from '@nestjs/config'; // for .env
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UserModule } from './mongodb/users/user.module';
 
-// for .env
-import { ConfigModule } from '@nestjs/config';
-import { ProductModule } from './products/products.module';
-import { MongooseModule } from '@nestjs/mongoose/dist';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(process.env.MONGODB_CLUSTER0),
-    ProductModule,
+    MongooseModule.forRoot(process.env.MONGODB_URL),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
