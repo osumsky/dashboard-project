@@ -1,4 +1,4 @@
-import { User } from '../../properties/schema';
+import { User } from '../../users/schema';
 
 export class UpdateUserDto {
   readonly title: string;
