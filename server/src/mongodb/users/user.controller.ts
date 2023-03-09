@@ -11,9 +11,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from '../users/schema';
-import { Property } from '../properties/schema';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { ICreateUser } from './interfaces';
 
 @Controller('users')
 export class UserController {
@@ -31,8 +29,8 @@ export class UserController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() createUserDto: CreateUserDto): Promise<User> {
-    return this.userService.create(createUserDto);
+  create(@Body() createUser: ICreateUser): Promise<User> {
+    return this.userService.create(createUser);
   }
 
   @Delete(':id')
@@ -42,9 +40,9 @@ export class UserController {
 
   @Put(':id')
   update(
-    @Body() updateUserDto: UpdateUserDto,
+    @Body() updateUser: ICreateUser,
     @Param('id') id: string,
   ): Promise<User> {
-    return this.userService.update(id, updateUserDto);
+    return this.userService.update(id, updateUser);
   }
 }

@@ -2,8 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from '../users/schema';
 import { Model } from 'mongoose';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { CreateUserDto } from './dto/create-user.dto';
+import { ICreateUser, IUpdateUser } from './interfaces';
 
 @Injectable()
 export class UserService {
@@ -17,16 +16,22 @@ export class UserService {
     return this.userModel.findById(id);
   }
 
-  async create(userDto: CreateUserDto): Promise<User> {
-    const newUser = new this.userModel(userDto);
-    return newUser.save();
+  async create(user: ICreateUser): Promise<User> {
+    
+    const userExists = await this.userModel.findOne({ email: user.email });
+    
+    if (userExists) return userExists;
+        
+    return this.userModel.create(user);
   }
 
   async remove(id: string): Promise<User> {
     return this.userModel.findByIdAndRemove(id);
   }
 
-  async update(id: string, userDto: UpdateUserDto): Promise<User> {
-    return this.userModel.findByIdAndUpdate(id, userDto, { new: true });
+  async update(id: string, user: IUpdateUser): Promise<User> {
+    return this.userModel.findByIdAndUpdate(id, user, { new: true });
   }
+
+
 }
