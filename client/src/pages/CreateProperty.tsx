@@ -37,8 +37,6 @@ export const CreateProperty = () => {
   };
 
   const onFinishHandler = async (data: FieldValues) => {
-    console.log('onFinishHandler()');
-
     if (!propertyImage.name) return alert('Please select an image');
     await onFinish({ ...data, photo: propertyImage.url, email: user.email });
   };

@@ -135,7 +135,7 @@ function App() {
       <GlobalStyles styles={{ html: { WebkitFontSmoothing: 'auto' } }} />
       <RefineSnackbarProvider>
         <Refine
-          dataProvider={dataProvider('https://api.fake-rest.refine.dev')}
+          dataProvider={dataProvider('http://localhost:3001')}
           notificationProvider={notificationProvider}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}

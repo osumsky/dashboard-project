@@ -11,8 +11,7 @@ import {
 } from '@nestjs/common';
 import { PropertyService } from './property.service';
 import { Property } from '../properties/schema';
-import { CreatePropertyDto } from './dto/create-property.dto';
-import { UpdatePropertyDto } from './dto/update-property.dto';
+import { ICreateProperty, IUpdateProperty } from './interfaces';
 
 @Controller('properties')
 export class PropertyController {
@@ -30,7 +29,7 @@ export class PropertyController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() createPropertyDto: CreatePropertyDto): Promise<Property> {
+  create(@Body() createPropertyDto: ICreateProperty): Promise<Property> {
     return this.propertyService.create(createPropertyDto);
   }
 
@@ -41,7 +40,7 @@ export class PropertyController {
 
   @Put(':id')
   update(
-    @Body() updatePropertyDto: UpdatePropertyDto,
+    @Body() updatePropertyDto: IUpdateProperty,
     @Param('id') id: string,
   ): Promise<Property> {
     return this.propertyService.update(id, updatePropertyDto);

@@ -16,7 +16,7 @@ export class User {
   avatar: string;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Property' })
-  allProperties: Property[];
+  allProperties: mongoose.Types.ObjectId[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
