@@ -15,7 +15,9 @@ export class User {
   @Prop({ required: true })
   avatar: string;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Property' })
+  @Prop({
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Property' }],
+  })
   allProperties: mongoose.Types.ObjectId[];
 }
 

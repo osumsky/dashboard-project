@@ -28,14 +28,16 @@ export class PropertyService {
       api_key: process.env.CLOUDINARY_API_KEY,
       api_secret: process.env.CLOUDINARY_API_SECRET,
     });
-    
+
     // Start a new session
     const session = await this.connection.startSession();
     session.startTransaction();
 
     const user = await this.userModel.findOne({ email: property.email });
 
-    if (!user) throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    if (!user) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    } else console.log('user: ', user);
 
     const photoUrl = await cloudinary.uploader.upload(property.photo);
 
@@ -44,8 +46,9 @@ export class PropertyService {
       photo: photoUrl.url,
       creator: user._id,
     });
-
+    
     user.allProperties.push(newProperty._id);
+
     await user.save({ session });
 
     await newProperty.save({ session });
